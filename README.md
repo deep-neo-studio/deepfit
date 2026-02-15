@@ -1,4 +1,4 @@
-# 💪 DeepFit
+# DeepFit
 
 <p align="center">
   <strong>Tu compañero de entrenamiento de suelo pélvico e hipopresivos</strong>
@@ -10,15 +10,16 @@
 
 ---
 
-## ✨ Características
+## Características
 
-- 🧘 **Ejercicios Hipopresivos** — 3 niveles progresivos (Principiante, Intermedio, Atleta) con sesiones guiadas de inhalar, exhalar y apnea
-- 💪 **Ejercicios Kegel** — 3 niveles con contracciones y relajaciones cronometradas por series y repeticiones
-- 📊 **Seguimiento de progreso** — Racha diaria, sesiones totales y gráficos donut de avance
-- 👤 **Perfil personalizado** — Nombre editable y experiencia personalizada
+- **Ejercicios Hipopresivos** — 3 niveles progresivos (Principiante, Intermedio, Atleta) con sesiones guiadas de inhalar, exhalar y apnea
+- **Ejercicios Kegel** — 3 niveles con contracciones y relajaciones cronometradas por series y repeticiones
+- **Seguimiento de progreso** — Racha diaria, sesiones totales y gráficos donut de avance
+- **Sonidos personalizados** — Sube tus propios audios para las fases de apnea y descanso
+- **Perfil personalizado** — Nombre editable y experiencia personalizada
+- **Diseño premium** — Interfaz dark mode con gradientes, glassmorphism y animaciones
 
-
-## 🛠️ Tecnologías
+## Tecnologías
 
 | Tecnología | Uso |
 |-----------|-----|
@@ -29,7 +30,7 @@
 | **Lucide React** | Iconos |
 | **CSS puro** | Estilos sin frameworks |
 
-## 📱 Pantallas
+## Pantallas
 
 <p align="center">
   <img src="screenshots/1.png" alt="Pantalla 1" width="200"/>
@@ -43,7 +44,7 @@
   <img src="screenshots/6.png" alt="Pantalla 6" width="200"/>
 </p>
 
-## 🚀 Instalación
+## Instalación
 
 ### Requisitos
 - Node.js 18+
@@ -78,7 +79,7 @@ npx cap open android
 cd android && ./gradlew assembleDebug
 ```
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 deepfit/
@@ -94,10 +95,10 @@ deepfit/
 └── index.html
 ```
 
-## 👥 Equipo
+## Equipo
 
 **Deep Neo Studio** — Desarrollo de aplicaciones móviles y web
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto es privado y pertenece a **Deep Neo Studio**. Todos los derechos reservados.
