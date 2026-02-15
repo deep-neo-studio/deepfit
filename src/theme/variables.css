@@ -1,0 +1,78 @@
+/* Dark Mode Premium Theme */
+:root {
+    /* Colors */
+    --ion-color-primary: #8b5cf6;
+    --ion-color-primary-rgb: 139, 92, 246;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #7a51d8;
+    --ion-color-primary-tint: #976cf7;
+
+    --ion-color-secondary: #ec4899;
+    /* Pink for contrast */
+    --ion-color-secondary-rgb: 236, 72, 153;
+
+    --ion-color-tertiary: #6366f1;
+    /* Indigo */
+
+    --background-dark: #0f172a;
+    --background-card: rgba(30, 41, 59, 0.7);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(12px);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    --gradient-bg: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Prevent scroll on body, handle in content */
+}
+
+/* Global Utility Classes */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+    padding: 20px;
+    color: var(--text-main);
+}
+
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}

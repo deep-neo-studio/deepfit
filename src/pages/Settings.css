@@ -1,0 +1,434 @@
+.settings-page {
+    --background: var(--background-dark);
+}
+
+.settings-container {
+    padding: 0 1.25rem 2rem;
+}
+
+/* Header */
+.settings-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 3rem 1.25rem 1.5rem;
+}
+
+.settings-back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.settings-back-btn:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.settings-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+
+/* Section */
+.settings-section {
+    margin-top: 1.5rem;
+}
+
+.settings-section-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    padding-left: 4px;
+}
+
+.settings-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.settings-item:last-child {
+    border-bottom: none;
+}
+
+.settings-item:active {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.settings-item-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.settings-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.settings-item-icon.purple {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.settings-item-icon.pink {
+    background: rgba(236, 72, 153, 0.2);
+    color: #f472b6;
+}
+
+.settings-item-icon.red {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.settings-item-info h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 2px;
+}
+
+.settings-item-info p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ============= User Profile Section ============= */
+.settings-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+}
+
+.settings-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.settings-profile-info h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2px;
+    display: flex;
+    align-items: center;
+}
+
+.settings-profile-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Name editing */
+.settings-name-edit {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.settings-name-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.settings-name-input:focus {
+    border-color: #a78bfa;
+}
+
+.settings-name-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.name-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.name-action-btn.save {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+}
+
+.name-action-btn.cancel {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
+
+.name-action-btn:active {
+    opacity: 0.7;
+}
+
+/* ============= Sound Slots ============= */
+.sound-slot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+}
+
+.sound-slot:last-child {
+    border-bottom: none;
+}
+
+.sound-slot-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px dashed rgba(139, 92, 246, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.sound-slot-icon.has-file {
+    border-style: solid;
+    background: rgba(139, 92, 246, 0.25);
+}
+
+.sound-slot-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sound-slot-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 2px;
+}
+
+.sound-slot-info p {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sound-slot-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.sound-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.sound-action-btn.play {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.sound-action-btn.delete {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.sound-action-btn:active {
+    opacity: 0.7;
+}
+
+.sound-slot-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.1);
+    color: #a78bfa;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.sound-slot-btn:active {
+    background: rgba(139, 92, 246, 0.25);
+}
+
+/* ============= App Info ============= */
+.settings-app-info {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.settings-app-info p {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.settings-app-sub {
+    font-size: 0.75rem !important;
+    color: var(--text-muted) !important;
+    font-weight: 500 !important;
+    margin-top: 2px !important;
+}
+
+/* ============= Confirmation Modal ============= */
+.settings-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 1.5rem;
+    animation: fadeIn 0.2s ease;
+}
+
+.settings-modal {
+    background: #1e1b3a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1.5rem;
+    max-width: 320px;
+    width: 100%;
+    animation: scaleIn 0.2s ease;
+}
+
+.settings-modal h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem;
+}
+
+.settings-modal p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 1.25rem;
+}
+
+.settings-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.modal-btn.cancel {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.modal-btn.danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #fff;
+}
+
+.modal-btn:active {
+    opacity: 0.8;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

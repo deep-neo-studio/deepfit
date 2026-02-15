@@ -1,0 +1,369 @@
+.hipo-content {
+    --background: var(--background-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circles */
+.hipo-deco-circle-1 {
+    position: absolute;
+    top: -50px;
+    left: -40px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    opacity: 0.45;
+    filter: blur(1px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hipo-deco-circle-2 {
+    position: absolute;
+    top: 100px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Header */
+.hipo-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 3rem 1.25rem 0.5rem;
+}
+
+.hipo-back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.hipo-back-btn:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Hero section */
+.hipo-hero {
+    position: relative;
+    z-index: 2;
+    padding: 1.25rem 1.25rem 0;
+}
+
+.hipo-hero-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+}
+
+.hipo-hero-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Page type badge */
+.hipo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    color: #a78bfa;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+}
+
+/* Section title */
+.hipo-section-title {
+    position: relative;
+    z-index: 2;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin: 1.25rem 1.25rem 0.75rem;
+    padding-left: 4px;
+}
+
+/* Level cards */
+.hipo-levels {
+    position: relative;
+    z-index: 2;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hipo-level-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(99, 102, 241, 0.06) 100%);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.2s, background 0.2s;
+}
+
+.hipo-level-card:active {
+    transform: scale(0.97);
+    border-color: rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.22) 0%, rgba(99, 102, 241, 0.12) 100%);
+}
+
+.hipo-level-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.hipo-level-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.hipo-level-text h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2px;
+}
+
+.hipo-level-text p {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hipo-level-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.hipo-level-time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.hipo-level-arrow {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* Warning card */
+.hipo-warning {
+    position: relative;
+    z-index: 2;
+    margin: 1.25rem 1.25rem 2rem;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(249, 115, 22, 0.08);
+    border: 1px solid rgba(249, 115, 22, 0.15);
+}
+
+.hipo-warning h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fb923c;
+    margin: 0 0 4px;
+}
+
+.hipo-warning p {
+    font-size: 0.72rem;
+    color: rgba(254, 215, 170, 0.75);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Kegel specific */
+.kegel-content {
+    --background: var(--background-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.kegel-deco-circle-1 {
+    position: absolute;
+    top: -50px;
+    right: -40px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    opacity: 0.45;
+    filter: blur(1px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.kegel-deco-circle-2 {
+    position: absolute;
+    top: 120px;
+    left: -30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.kegel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(236, 72, 153, 0.15);
+    border: 1px solid rgba(236, 72, 153, 0.25);
+    color: #f472b6;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+}
+
+.kegel-levels {
+    position: relative;
+    z-index: 2;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kegel-level-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.12) 0%, rgba(139, 92, 246, 0.06) 100%);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.2s, background 0.2s;
+}
+
+.kegel-level-card:active {
+    transform: scale(0.97);
+    border-color: rgba(236, 72, 153, 0.3);
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.22) 0%, rgba(139, 92, 246, 0.12) 100%);
+}
+
+.kegel-level-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.kegel-level-icon.pink {
+    background: rgba(236, 72, 153, 0.2);
+    color: #f472b6;
+}
+
+.kegel-level-icon.yellow {
+    background: rgba(234, 179, 8, 0.2);
+    color: #fbbf24;
+}
+
+.kegel-level-icon.blue {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+}
+
+.kegel-level-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.kegel-level-text h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2px;
+}
+
+.kegel-level-text p {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kegel-level-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.kegel-level-duration {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.kegel-level-detail {
+    font-size: 0.65rem;
+    color: rgba(244, 114, 182, 0.7);
+    font-weight: 500;
+}

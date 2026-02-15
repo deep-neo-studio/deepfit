@@ -1,0 +1,444 @@
+.session-content {
+    --background: var(--background-dark);
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.session-content .inner-scroll {
+    overflow-x: hidden !important;
+}
+
+.session-content * {
+    box-sizing: border-box;
+}
+
+/* Session layout */
+.session-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Session header */
+.session-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 3rem 0 0.5rem;
+}
+
+.session-back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.session-back-btn:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.session-level-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Phase instruction text */
+.session-instruction {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #a78bfa;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Decorative circles for session */
+.session-deco-1 {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    opacity: 0.3;
+    filter: blur(2px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.session-deco-2 {
+    position: absolute;
+    bottom: 100px;
+    left: -40px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899 0%, #6366f1 100%);
+    opacity: 0.2;
+    filter: blur(2px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ============= THE GLOWING ORB ============= */
+.orb-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 260px;
+    margin: 2rem auto;
+    flex-shrink: 0;
+}
+
+.glowing-orb {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 0 30px 10px rgba(203, 213, 225, 0.3),
+        0 0 60px 20px rgba(139, 92, 246, 0.1);
+}
+
+/* Orb inner glow overlay */
+.orb-inner-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    filter: blur(16px);
+    transition: background-color 0.7s;
+    pointer-events: none;
+}
+
+.orb-inner-glow.contract {
+    background: rgba(236, 72, 153, 0.3);
+}
+
+.orb-inner-glow.default {
+    background: transparent;
+}
+
+/* Orb ping effect */
+.orb-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    animation: orbPing 2s ease-out infinite;
+}
+
+@keyframes orbPing {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Phase Inhale: Expand */
+.phase-INHALE {
+    transform: scale(1.3);
+    background: #e2e8f0;
+    box-shadow:
+        0 0 40px 15px rgba(226, 232, 240, 0.5),
+        0 0 80px 30px rgba(226, 232, 240, 0.2),
+        0 0 120px 50px rgba(139, 92, 246, 0.1);
+}
+
+/* Phase Exhale: Contract */
+.phase-EXHALE {
+    transform: scale(0.9);
+    background: #94a3b8;
+    box-shadow: 0 0 20px 5px rgba(203, 213, 225, 0.2);
+}
+
+/* Phase Apnea: Vacuum */
+.phase-APNEA {
+    transform: scale(0.6);
+    background: #f1f5f9;
+    box-shadow:
+        0 0 0 10px rgba(139, 92, 246, 0.0),
+        0 0 40px 20px rgba(139, 92, 246, 0.8),
+        0 0 100px 50px rgba(139, 92, 246, 0.5),
+        0 0 180px 90px rgba(139, 92, 246, 0.3);
+    transition: transform 1s ease-in-out, box-shadow 2.5s ease-out;
+}
+
+/* Phase Rest / Prepare / Finished */
+.phase-REST,
+.phase-PREPARE,
+.phase-FINISHED {
+    transform: scale(1);
+}
+
+/* Kegel specific phases */
+.phase-CONTRACT {
+    transform: scale(0.75);
+    background: rgba(236, 72, 153, 0.2);
+    border: 4px solid rgba(236, 72, 153, 0.5);
+    box-shadow: 0 0 80px 40px rgba(236, 72, 153, 0.5);
+}
+
+.phase-RELAX {
+    transform: scale(1);
+    background: rgba(191, 219, 254, 0.1);
+    border: 2px solid rgba(147, 197, 253, 0.3);
+    box-shadow: 0 0 60px 30px rgba(59, 130, 246, 0.3);
+}
+
+.phase-REST_SET {
+    transform: scale(1);
+    background: rgba(107, 114, 128, 0.1);
+    opacity: 0.6;
+}
+
+/* Text inside Orb */
+.orb-time {
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #1e1b4b;
+    position: relative;
+    z-index: 20;
+}
+
+.orb-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+    font-weight: 700;
+    color: #1e1b4b;
+    opacity: 0.8;
+    position: relative;
+    z-index: 20;
+}
+
+/* ============= STATS ROW ============= */
+.stats-container {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+}
+
+.stat-item {
+    flex: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 12px 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+.stat-value.purple {
+    background: linear-gradient(to right, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-value.pink {
+    background: linear-gradient(to right, #f472b6, #fb7185);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-value.blue {
+    background: linear-gradient(to right, #60a5fa, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+/* ============= CONTROLS ============= */
+.session-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: auto;
+    padding: 2rem 0.5rem 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-circle-outline {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.btn-circle-outline:active {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(0.95);
+}
+
+.btn-capsule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-capsule:active {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+    transform: scale(0.97);
+}
+
+.btn-capsule.pause {
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* ============= NEBULA BG FOR KEGEL ============= */
+.kegel-nebula {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: opacity 1s;
+    z-index: 0;
+}
+
+.kegel-nebula.active {
+    opacity: 0.4;
+}
+
+.kegel-nebula.passive {
+    opacity: 0.2;
+}
+
+.nebula-blob-1 {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 250px;
+    height: 250px;
+    background: #db2777;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: nebulaPulse 4s ease-in-out infinite;
+}
+
+.nebula-blob-2 {
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    width: 250px;
+    height: 250px;
+    background: #6b21a8;
+    border-radius: 50%;
+    filter: blur(120px);
+}
+
+@keyframes nebulaPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Finished state */
+.session-finished {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.session-finished h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.session-finished p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
