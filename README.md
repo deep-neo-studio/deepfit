@@ -8,6 +8,12 @@
   Aplicación móvil con ejercicios guiados de <b>Hipopresivos</b> y <b>Kegel</b>, diseñada para ayudarte a fortalecer tu suelo pélvico con sesiones personalizadas y seguimiento de progreso.
 </p>
 
+<p align="center">
+  <a href="https://github.com/deep-neo-studio/deepfit/releases/download/v1.1/DeepFit.apk">
+    <img src="https://img.shields.io/badge/Descargar-APK-blue?style=for-the-badge&logo=android" alt="Descargar APK">
+  </a>
+</p>
+
 ---
 
 ## Características
