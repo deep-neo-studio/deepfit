@@ -15,9 +15,8 @@
 - 🧘 **Ejercicios Hipopresivos** — 3 niveles progresivos (Principiante, Intermedio, Atleta) con sesiones guiadas de inhalar, exhalar y apnea
 - 💪 **Ejercicios Kegel** — 3 niveles con contracciones y relajaciones cronometradas por series y repeticiones
 - 📊 **Seguimiento de progreso** — Racha diaria, sesiones totales y gráficos donut de avance
-- 🎵 **Sonidos personalizados** — Sube tus propios audios para las fases de apnea y descanso
 - 👤 **Perfil personalizado** — Nombre editable y experiencia personalizada
-- 🎨 **Diseño premium** — Interfaz dark mode con gradientes, glassmorphism y animaciones
+
 
 ## 🛠️ Tecnologías
 
@@ -32,13 +31,17 @@
 
 ## 📱 Pantallas
 
-| Bienvenida | Home | Configuraciones |
-|:---:|:---:|:---:|
-| Captura de nombre | Progreso + ejercicios | Perfil, sonidos y datos |
+<p align="center">
+  <img src="screenshots/welcome.png" alt="Bienvenida" width="200"/>
+  <img src="screenshots/home.png" alt="Home" width="200"/>
+  <img src="screenshots/settings.png" alt="Configuraciones" width="200"/>
+</p>
 
-| Hipopresivos | Kegel | Sesión |
-|:---:|:---:|:---:|
-| Landing con niveles | Landing con niveles | Orb guiado + stats |
+<p align="center">
+  <img src="screenshots/hipopresivos.png" alt="Hipopresivos" width="200"/>
+  <img src="screenshots/kegel.png" alt="Kegel" width="200"/>
+  <img src="screenshots/session.png" alt="Sesión" width="200"/>
+</p>
 
 ## 🚀 Instalación
 
