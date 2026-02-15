@@ -32,15 +32,15 @@
 ## 📱 Pantallas
 
 <p align="center">
-  <img src="screenshots/welcome.png" alt="Bienvenida" width="200"/>
-  <img src="screenshots/home.png" alt="Home" width="200"/>
-  <img src="screenshots/settings.png" alt="Configuraciones" width="200"/>
+  <img src="screenshots/1.png" alt="Pantalla 1" width="200"/>
+  <img src="screenshots/2.png" alt="Pantalla 2" width="200"/>
+  <img src="screenshots/3.png" alt="Pantalla 3" width="200"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/hipopresivos.png" alt="Hipopresivos" width="200"/>
-  <img src="screenshots/kegel.png" alt="Kegel" width="200"/>
-  <img src="screenshots/session.png" alt="Sesión" width="200"/>
+  <img src="screenshots/4.png" alt="Pantalla 4" width="200"/>
+  <img src="screenshots/5.png" alt="Pantalla 5" width="200"/>
+  <img src="screenshots/6.png" alt="Pantalla 6" width="200"/>
 </p>
 
 ## 🚀 Instalación
