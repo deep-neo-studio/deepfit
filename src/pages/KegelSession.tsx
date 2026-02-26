@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Play, Pause, RotateCcw, ArrowLeft } from 'lucide-react';
 import { KEGEL_LEVELS } from '../data/exercises';
 import { useProgress } from '../hooks/useProgress';
+import { playPhaseBeep } from '../utils/audio';
 import './ExerciseSession.css';
 
 type Phase = 'PREPARE' | 'CONTRACT' | 'RELAX' | 'REST_SET' | 'FINISHED';
@@ -53,6 +54,16 @@ const KegelSession: React.FC = () => {
 
         return () => { if (timerRef.current) clearTimeout(timerRef.current); };
     }, [isActive, timeLeft, phase]);
+
+    useEffect(() => {
+        if (isActive && phase !== 'FINISHED') {
+            if (phase === 'CONTRACT') {
+                playPhaseBeep(500, 'sine', 0.1); // Higher pitch for contract
+            } else if (phase !== 'PREPARE') {
+                playPhaseBeep(350, 'sine', 0.5); // Lower tone, longer duration for relax/rest
+            }
+        }
+    }, [phase, isActive]);
 
     const handlePhaseTransition = () => {
         if (!level) return;

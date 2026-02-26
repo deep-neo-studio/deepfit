@@ -192,7 +192,8 @@
 /* Phase Apnea: Vacuum */
 .phase-APNEA {
     transform: scale(0.6);
-    background: #f1f5f9;
+    background: #94a3b8;
+    /* Changed from #f1f5f9 to match EXHALE */
     box-shadow:
         0 0 0 10px rgba(139, 92, 246, 0.0),
         0 0 40px 20px rgba(139, 92, 246, 0.8),
@@ -211,22 +212,25 @@
 /* Kegel specific phases */
 .phase-CONTRACT {
     transform: scale(0.75);
-    background: rgba(236, 72, 153, 0.2);
-    border: 4px solid rgba(236, 72, 153, 0.5);
+    background: #fbcfe8;
+    /* Solid light pink to be less transparent */
+    border: 4px solid rgba(236, 72, 153, 0.8);
     box-shadow: 0 0 80px 40px rgba(236, 72, 153, 0.5);
 }
 
 .phase-RELAX {
     transform: scale(1);
-    background: rgba(191, 219, 254, 0.1);
-    border: 2px solid rgba(147, 197, 253, 0.3);
+    background: #bfdbfe;
+    /* Solid light blue */
+    border: 2px solid rgba(147, 197, 253, 0.6);
     box-shadow: 0 0 60px 30px rgba(59, 130, 246, 0.3);
 }
 
 .phase-REST_SET {
     transform: scale(1);
-    background: rgba(107, 114, 128, 0.1);
-    opacity: 0.6;
+    background: #d1d5db;
+    /* Solid gray */
+    opacity: 0.9;
 }
 
 /* Text inside Orb */
@@ -441,4 +445,67 @@
 .session-finished p {
     font-size: 0.9rem;
     color: var(--text-muted);
+}
+
+/* Tutorial Overlay and Modal */
+.hypo-tutorial-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.hypo-tutorial-modal {
+    background: var(--surface-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.hypo-tutorial-modal h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.hypo-svg-container {
+    width: 100%;
+    margin: 0 auto 1.5rem;
+}
+
+.hypo-tutorial-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    color: #e2e8f0;
+}
+
+.hypo-tutorial-text strong {
+    color: #a78bfa;
+}
+
+.hypo-tutorial-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.tutorial-btn {
+    width: 100%;
+    justify-content: center;
 }

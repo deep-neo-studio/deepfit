@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo SVG Interactivo - Stomach Vacuum</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0; /* Fondo claro */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #svg-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #ui-layer {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 12px 24px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            pointer-events: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        #controls-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #333;
+            min-width: 200px;
+        }
+        #controls-panel h3 {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            color: #1a1a1a;
+        }
+        input[type=range] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #3c85f2ff; /* Color del thumb a juego con el crop top */
+            height: 6px;
+            border-radius: 3px;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="svg-container">
+        <!-- SVG Viewbox configurado para ajustarse a la pantalla -->
+        <svg id="figure-svg" viewBox="0 0 500 850" style="height: 90vh; max-width: 100%;">
+            <defs>
+                <!-- Filtro para la sombra falsa del suelo -->
+                <filter id="shadow-blur">
+                    <feGaussianBlur stdDeviation="5" />
+                </filter>
+            </defs>
+
+            <!-- Sombra en el suelo -->
+            <ellipse cx="230" cy="760" rx="90" ry="12" fill="rgba(0,0,0,0.15)" filter="url(#shadow-blur)" />
+
+            <!-- Grupo principal del personaje (sin color general para pintarlos individualmente) -->
+            <g id="character">
+                
+                <!-- 1. Cabeza (Se trasladará verticalmente) - Color Piel -->
+                <g id="head" fill="#f5cba7">
+                    <path d="M 230, 160 
+                             C 240, 110 250, 50 210, 50 
+                             C 170, 50 160, 80 160, 100 
+                             L 150, 110 L 160, 120 L 155, 135 
+                             C 175, 145 180, 155 190, 160 Z" />
+                </g>
+
+                <!-- 2. Torso base (Abdomen) - Color Piel -->
+                <path id="torso" fill="#f5cba7" />
+
+                <!-- 3. Camisa Crop Top superpuesta al torso - Color Rosa/Rojo -->
+                <path id="crop-top" fill="#ff6b81" />
+
+                <!-- 4. Pantalones (Estáticos) - Color Gris Oscuro -->
+                <path d="M 190, 520 
+                         C 190, 600 200, 650 190, 750 
+                         L 250, 750 
+                         C 260, 650 250, 600 270, 520 Z" fill="#2f3542" />
+
+                <!-- 5. Brazo (Superpuesto para dar profundidad) - Color Piel un poco más oscuro -->
+                <path id="arm" fill="none" stroke="#e6b18a" stroke-width="26" stroke-linecap="round" />
+            </g>
+        </svg>
+    </div>
+
+    <div id="ui-layer">
+        🎚️ Desliza el control para ver la contracción muscular
+    </div>
+    <div id="controls-panel">
+        <h3>Control Corporal</h3>
+        <label for="abdomenControl">Apnea / Hipopresivo</label>
+        <input type="range" id="abdomenControl" min="0" max="1" step="0.01" value="0">
+    </div>
+
+    <script>
+        const slider = document.getElementById('abdomenControl');
+        const torso = document.getElementById('torso');
+        const cropTop = document.getElementById('crop-top');
+        const head = document.getElementById('head');
+        const arm = document.getElementById('arm');
+
+        // Coordenadas Base (Postura Neutral / Relajada)
+        const neutralPath = [
+            [190, 160], // Inicio: Cuello Frontal
+            [150, 200, 140, 260, 150, 320], // Curva 1: Pecho (Relajado)
+            [160, 390, 170, 460, 190, 520], // Curva 2: Abdomen (Relajado)
+            [270, 520],                     // Línea: Base de la pelvis
+            [280, 460, 280, 380, 260, 300], // Curva 3: Espalda Baja
+            [240, 260, 230, 200, 230, 160]  // Curva 4: Espalda Alta al Cuello
+        ];
+
+        // Coordenadas Objetivo (Postura de Vacío / Apnea)
+        const vacuumPath = [
+            [190, 130], // Cuello Frontal (Se eleva 30px)
+            [150, 170, 120, 240, 140, 300], // Pecho (Se expande hacia afuera y arriba)
+            [230, 320, 230, 420, 190, 520], // Abdomen (Profundamente succionado hacia adentro y arriba)
+            [270, 520],                     // Pelvis (Estática)
+            [280, 460, 280, 360, 260, 280], // Espalda Baja (Sigue la elevación)
+            [240, 240, 230, 170, 230, 130]  // Espalda Alta al Cuello (Se eleva)
+        ];
+
+        function updateFigure() {
+            const val = parseFloat(slider.value);
+            
+            // 1. Interpolación de los vértices del Torso
+            const currentTorso = neutralPath.map((group, i) => {
+                return group.map((num, j) => {
+                    return num + (vacuumPath[i][j] - num) * val;
+                });
+            });
+            
+            // Construir el string 'd' del Torso (Piel)
+            const torsoData = `
+                M ${currentTorso[0].join(',')} 
+                C ${currentTorso[1].join(',')} 
+                C ${currentTorso[2].join(',')} 
+                L ${currentTorso[3].join(',')} 
+                C ${currentTorso[4].join(',')} 
+                C ${currentTorso[5].join(',')} Z
+            `;
+            torso.setAttribute('d', torsoData.trim());
+
+            // 2. Construir el string 'd' del Crop Top
+            // Usamos las coordenadas del pecho (curva 1) y la espalda alta (curva 5) del torso
+            const startX = currentTorso[1][4];
+            const startY = currentTorso[1][5];
+            const endX = currentTorso[4][4];
+            const endY = currentTorso[4][5];
+            
+            // Punto de control para el dobladillo inferior curvo de la camisa
+            const ctrlX = (startX + endX) / 2;
+            const ctrlY = Math.max(startY, endY) + 15;
+
+            const cropTopData = `
+                M ${currentTorso[0].join(',')} 
+                C ${currentTorso[1].join(',')} 
+                Q ${ctrlX},${ctrlY} ${endX},${endY} 
+                C ${currentTorso[5].join(',')} Z
+            `;
+            cropTop.setAttribute('d', cropTopData.trim());
+
+            // 3. Elevación de la Cabeza
+            const headYOffset = val * -30; 
+            head.setAttribute('transform', `translate(0, ${headYOffset})`);
+
+            // 4. Animación del Brazo
+            const armX0 = 200, armY0 = 200 - (val * 30);
+            const armCX1 = 230 + (val * 5), armCY1 = 300 - (val * 20);
+            const armCX2 = 220 + (val * 5), armCY2 = 400 - (val * 20);
+            const armX1 = 210 + (val * 5), armY1 = 480 - (val * 20);
+            
+            arm.setAttribute('d', `M ${armX0},${armY0} C ${armCX1},${armCY1} ${armCX2},${armCY2} ${armX1},${armY1}`);
+        }
+
+        slider.addEventListener('input', updateFigure);
+        updateFigure(); 
+    </script>
+</body>
+</html>

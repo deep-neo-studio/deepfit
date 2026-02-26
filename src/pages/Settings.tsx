@@ -5,14 +5,7 @@ import { useHistory } from 'react-router-dom';
 import './Settings.css';
 
 const USER_NAME_KEY = 'user_name';
-const SOUND_APNEA_KEY = 'deepfit_sound_apnea';
-const SOUND_REST_KEY = 'deepfit_sound_rest';
 const PROGRESS_KEY = 'hipopressive_progress';
-
-interface SoundData {
-    name: string;
-    dataUrl: string;
-}
 
 const Settings: React.FC = () => {
     const history = useHistory();
@@ -20,21 +13,6 @@ const Settings: React.FC = () => {
     const [isEditingName, setIsEditingName] = useState(false);
     const [tempName, setTempName] = useState(userName);
     const [showResetConfirm, setShowResetConfirm] = useState(false);
-
-    // Sound states
-    const [apneaSound, setApneaSound] = useState<SoundData | null>(() => {
-        const saved = localStorage.getItem(SOUND_APNEA_KEY);
-        return saved ? JSON.parse(saved) : null;
-    });
-    const [restSound, setRestSound] = useState<SoundData | null>(() => {
-        const saved = localStorage.getItem(SOUND_REST_KEY);
-        return saved ? JSON.parse(saved) : null;
-    });
-    const [playingSound, setPlayingSound] = useState<string | null>(null);
-
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-    const apneaInputRef = useRef<HTMLInputElement>(null);
-    const restInputRef = useRef<HTMLInputElement>(null);
 
     const userInitial = userName.charAt(0).toUpperCase();
 
@@ -51,56 +29,6 @@ const Settings: React.FC = () => {
     const handleCancelEdit = () => {
         setTempName(userName);
         setIsEditingName(false);
-    };
-
-    // === Sound upload ===
-    const handleSoundUpload = (key: string, setter: React.Dispatch<React.SetStateAction<SoundData | null>>) => {
-        return (e: React.ChangeEvent<HTMLInputElement>) => {
-            const file = e.target.files?.[0];
-            if (!file) return;
-
-            // Limit to 5MB
-            if (file.size > 5 * 1024 * 1024) {
-                alert('El archivo debe ser menor a 5MB');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = () => {
-                const soundData: SoundData = {
-                    name: file.name,
-                    dataUrl: reader.result as string,
-                };
-                localStorage.setItem(key, JSON.stringify(soundData));
-                setter(soundData);
-            };
-            reader.readAsDataURL(file);
-        };
-    };
-
-    const handleRemoveSound = (key: string, setter: React.Dispatch<React.SetStateAction<SoundData | null>>) => {
-        localStorage.removeItem(key);
-        setter(null);
-        stopSound();
-    };
-
-    // === Sound playback ===
-    const playSound = (dataUrl: string, id: string) => {
-        stopSound();
-        const audio = new Audio(dataUrl);
-        audio.onended = () => setPlayingSound(null);
-        audio.play();
-        audioRef.current = audio;
-        setPlayingSound(id);
-    };
-
-    const stopSound = () => {
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-            audioRef.current = null;
-        }
-        setPlayingSound(null);
     };
 
     // === Reset progress ===
@@ -158,94 +86,7 @@ const Settings: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Sounds Section */}
-                    <div className="settings-section">
-                        <h2 className="settings-section-title">
-                            <Volume2 size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '6px' }} />
-                            Sonidos
-                        </h2>
-                        <div className="settings-card">
-                            {/* Apnea Sound */}
-                            <div className="sound-slot">
-                                <div className="sound-slot-icon">
-                                    <Music size={20} />
-                                </div>
-                                <div className="sound-slot-info">
-                                    <h3>Fase de Apnea</h3>
-                                    <p>{apneaSound ? apneaSound.name : 'Sin archivo seleccionado'}</p>
-                                </div>
-                                <div className="sound-slot-actions">
-                                    {apneaSound && (
-                                        <>
-                                            <button
-                                                className="sound-action-btn play"
-                                                onClick={() => playingSound === 'apnea' ? stopSound() : playSound(apneaSound.dataUrl, 'apnea')}
-                                            >
-                                                {playingSound === 'apnea' ? <Pause size={14} /> : <Play size={14} />}
-                                            </button>
-                                            <button
-                                                className="sound-action-btn delete"
-                                                onClick={() => handleRemoveSound(SOUND_APNEA_KEY, setApneaSound)}
-                                            >
-                                                <Trash2 size={14} />
-                                            </button>
-                                        </>
-                                    )}
-                                    <button className="sound-slot-btn" onClick={() => apneaInputRef.current?.click()}>
-                                        <Upload size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
-                                        {apneaSound ? 'Cambiar' : 'Subir'}
-                                    </button>
-                                </div>
-                                <input
-                                    ref={apneaInputRef}
-                                    type="file"
-                                    accept="audio/*"
-                                    style={{ display: 'none' }}
-                                    onChange={handleSoundUpload(SOUND_APNEA_KEY, setApneaSound)}
-                                />
-                            </div>
-
-                            {/* Rest Sound */}
-                            <div className="sound-slot">
-                                <div className="sound-slot-icon">
-                                    <Music size={20} />
-                                </div>
-                                <div className="sound-slot-info">
-                                    <h3>Fase de Descanso</h3>
-                                    <p>{restSound ? restSound.name : 'Sin archivo seleccionado'}</p>
-                                </div>
-                                <div className="sound-slot-actions">
-                                    {restSound && (
-                                        <>
-                                            <button
-                                                className="sound-action-btn play"
-                                                onClick={() => playingSound === 'rest' ? stopSound() : playSound(restSound.dataUrl, 'rest')}
-                                            >
-                                                {playingSound === 'rest' ? <Pause size={14} /> : <Play size={14} />}
-                                            </button>
-                                            <button
-                                                className="sound-action-btn delete"
-                                                onClick={() => handleRemoveSound(SOUND_REST_KEY, setRestSound)}
-                                            >
-                                                <Trash2 size={14} />
-                                            </button>
-                                        </>
-                                    )}
-                                    <button className="sound-slot-btn" onClick={() => restInputRef.current?.click()}>
-                                        <Upload size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
-                                        {restSound ? 'Cambiar' : 'Subir'}
-                                    </button>
-                                </div>
-                                <input
-                                    ref={restInputRef}
-                                    type="file"
-                                    accept="audio/*"
-                                    style={{ display: 'none' }}
-                                    onChange={handleSoundUpload(SOUND_REST_KEY, setRestSound)}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    {/* Sound section removed as we use auto-generated sounds now */}
 
                     {/* Reset Progress */}
                     <div className="settings-section">

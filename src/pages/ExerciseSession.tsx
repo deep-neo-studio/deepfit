@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Play, Pause, RotateCcw, ArrowLeft, Info } from 'lucide-react';
 import { HIPOPRESSIVE_LEVELS } from '../data/exercises';
 import { useProgress } from '../hooks/useProgress';
+import { playPhaseBeep } from '../utils/audio';
+import HypoAnimation from '../components/HypoAnimation';
 import './ExerciseSession.css';
 
 type Phase = 'PREPARE' | 'INHALE' | 'EXHALE' | 'APNEA' | 'REST' | 'FINISHED';
@@ -19,8 +21,19 @@ const ExerciseSession: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [cycleCount, setCycleCount] = useState(0);
     const [repCount, setRepCount] = useState(0);
+    const [showTutorial, setShowTutorial] = useState(() => {
+        return localStorage.getItem('hideHypoTutorial') !== 'true';
+    });
+    const [dontShowAgain, setDontShowAgain] = useState(false);
 
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+    const closeTutorial = () => {
+        if (dontShowAgain) {
+            localStorage.setItem('hideHypoTutorial', 'true');
+        }
+        setShowTutorial(false);
+    };
 
     const startSession = () => setIsActive(true);
     const pauseSession = () => setIsActive(false);
@@ -40,6 +53,16 @@ const ExerciseSession: React.FC = () => {
         }
         return () => { if (timerRef.current) clearTimeout(timerRef.current); };
     }, [isActive, timeLeft, phase]);
+
+    useEffect(() => {
+        if (isActive && phase !== 'FINISHED') {
+            if (phase === 'APNEA') {
+                playPhaseBeep(330, 'triangle', 0.6); // Lower tone, longer duration for apnea
+            } else if (phase !== 'PREPARE') {
+                playPhaseBeep(440, 'sine', 0.6); // Standard tone for breathing
+            }
+        }
+    }, [phase, isActive]);
 
     const handlePhaseTransition = () => {
         if (!level) return;
@@ -94,6 +117,37 @@ const ExerciseSession: React.FC = () => {
     return (
         <IonPage>
             <IonContent fullscreen className="session-content">
+                {showTutorial && (
+                    <div className="hypo-tutorial-overlay">
+                        <div className="hypo-tutorial-modal">
+                            <h2>¿Cómo hacer el Hipopresivo?</h2>
+
+                            <div className="hypo-svg-container" style={{ height: '240px', display: 'flex', justifyContent: 'center' }}>
+                                <HypoAnimation />
+                            </div>
+
+                            <div className="hypo-tutorial-text">
+                                <p><strong>1. Inhala:</strong> Abre tus costillas.</p>
+                                <p><strong>2. Exhala:</strong> Suelta todo el aire.</p>
+                                <p><strong>3. Vacío (Apnea):</strong> Sin aire, "succiona" tu abdomen hacia arriba y adentro. Mantén la postura.</p>
+                            </div>
+
+                            <label className="hypo-tutorial-checkbox">
+                                <input
+                                    type="checkbox"
+                                    checked={dontShowAgain}
+                                    onChange={(e) => setDontShowAgain(e.target.checked)}
+                                />
+                                No volver a mostrar
+                            </label>
+
+                            <button className="btn-capsule tutorial-btn" onClick={closeTutorial}>
+                                Entendido
+                            </button>
+                        </div>
+                    </div>
+                )}
+
                 {/* Decorative */}
                 <div className="session-deco-1" />
                 <div className="session-deco-2" />
@@ -157,7 +211,7 @@ const ExerciseSession: React.FC = () => {
                             </button>
                         )}
 
-                        <button className="btn-circle-outline">
+                        <button className="btn-circle-outline" onClick={() => setShowTutorial(true)}>
                             <Info size={20} />
                         </button>
                     </div>
